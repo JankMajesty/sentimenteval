@@ -1,0 +1,540 @@
+---
+title: "Sentimental Value"
+author: "Lucas McGill"
+date: today
+format:
+  html:
+    theme: darkly
+    toc: true
+    embed-resources: true
+mainfont: "Georgia"
+sansfont: "Helvetica Neue"
+monofont: "JetBrains Mono"
+---
+# Intro
+
+This documents my attempts to benchmark a pair of prompts on several models.
+
+### Step three
+Using Agenta.AI, benchmark your two prompts on the 20 tweets, using any three models.
+Then try the same tweets on an established sentiment analysis tool.
+
+### Step four
+Document your results in your .qmd file, clearly identifying the best prompt and the best model.
+
+### Step five
+You must upload your .qmd file and your rendered .html file to Canvas. All must have the basename `eC`. Points will be deducted for any other name. (If you upload it more than once, Canvas will change the name but don't be concerned about that.)
+
+You should remove this instruction section from the final document.
+
+# Step one: two best prompts
+
+For selecting the two best prompts, I thought I needed to generate more than two prompts and evaluate them all against each other. For this step I asked ChatGPT-5 thinking to generate 5 prompts for sentiment analysis. I actually had to try several prompts before I recieved an output I was happy with. I will include the other prompts in my AI appendix, but the following is the prompt that generated my sentiment analysis prompts.
+
+## Prompt for generating 5 sentiment analysis prompts
+
+::: {.callout-note appearance="simple"}
+Would you develop 5 separate system prompts for testing sentiment analysis of tweets (positive, negative, or neutral) based on the most current and effective trends in prompt engineering and label the techniques used for each prompt in your output? I will be evaluating them against each other. The three options for sentiment (positive, negative, neutral) should be in the system prompt. I will be evaluating them in agenta.ai. The answer should should be written in lowercase and only include only the sentiment indicated no other text.
+:::
+
+## Output
+
+### 1) technique: role + rubric + constrained output
+
+::: {.callout-note appearance="simple"}
+ you are a meticulous twitter sentiment annotator.
+
+task: classify the user's tweet as exactly one of: positive, negative, neutral.
+
+rubric:\
+- positive: praise, satisfaction, enthusiasm, gratitude, support, relief; "not bad"/"could be worse" treated as mildly positive; positive emojis (e.g., 😊😍🎉) weigh positive.\
+- negative: complaints, frustration, insults, fear, disappointment, sarcasm with negative intent; negative emojis (e.g., 😡🤮💀) weigh negative.\
+- neutral: mixed/ambiguous, info-only, questions without stance, jokes with unclear valence, news headlines, or contradictory cues.
+
+guidelines:\
+- focus on the author's stance; for quotes/retweets, label the author's expressed attitude.\
+- handle negation and intensifiers (e.g., "barely", "so", "super").\
+- ignore usernames, urls, and non-sentiment hashtags unless they change tone.\
+- do not infer outside context; judge only the text provided.
+
+output: return exactly one label from {positive, negative, neutral} in lowercase with no other text, punctuation, or whitespace.\
+your output must match the regex: ^(positive|negative|neutral)$\
+keep any reasoning internal; do not reveal it.\
+:::
+
+### 2) technique: few-shot contrastive exemplars (domain-tuned)
+
+::: {.callout-note appearance="simple"}
+you label tweet sentiment for short social posts.
+
+labels (choose exactly one): positive, negative, neutral.
+
+examples:\
+tweet: "huge shoutout to the team—shipped it!" → positive\
+tweet: "waited 2 hours for support. never again." → negative\
+tweet: "release v2 drops tomorrow." → neutral\
+tweet: "not bad at all, actually impressed." → positive\
+tweet: "nice 'fix'… everything is broken lol" → negative\
+tweet: "anyone have docs for the api?" → neutral\
+tweet: "that concert was insane 🤩" → positive\
+tweet: "love waking up to bugs 🙃" → negative\
+
+instructions:\
+- assess the author's attitude in the provided tweet only.\
+- treat sarcasm/irony as negative unless clearly playful and positive.\
+- ignore urls, @handles, and non-sentiment hashtags.\
+
+output format (strict): one of {positive, negative, neutral} in lowercase only, no other text.\
+do not show your reasoning.
+
+:::
+
+### 3) technique: deliberate (hidden scratchpad) with checklist
+
+::: {.callout-note appearance="simple"}
+you will silently reason using a checklist, then output only the label.
+
+labels (choose exactly one): positive, negative, neutral.
+
+silent checklist (do not reveal):\
+1) identify sentiment words/emojis.\
+2) apply negation and intensifiers.\
+3) detect sarcasm/irony markers (quotes, "yeah right", 🙃, 💀).\
+4) if cues conflict or are weak → neutral.\
+
+domain notes:\
+- praise/gratitude/celebration → positive.\
+- complaints/insults/disappointment → negative.\
+- info-only announcements/questions → neutral.\
+- quoted text: label the author's stance, not the quoted content.\
+
+hard constraint: output must be exactly one of {positive, negative, neutral} in lowercase with nothing else.\
+never include explanations or punctuation.
+:::
+
+### 4) technique: reflective self-check (self-consistency) with tie-break
+
+::: {.callout-note appearance="simple"}
+you will run two internal passes and output only the final label.
+
+labels: positive, negative, neutral.
+
+procedure (internal, do not reveal):\
+- pass a: classify quickly using rubric.\
+- pass b: re-evaluate focusing on negation, sarcasm, and emojis.\
+- if pass a and b disagree → choose neutral.\
+- if they agree → output that label.\
+
+rubric summary:\
+- positive: praise, excitement, relief, supportive tone, positive emojis.\
+- negative: dissatisfaction, anger, fear, ridicule, negative emojis, sarcastic praise.\
+- neutral: mixed/unclear, info-only, questions without stance.\
+
+strict output: print exactly one of {positive, negative, neutral} in lowercase. no other words, symbols, or whitespace.
+:::
+
+### 5) technique: decision tree + lightweight scoring guardrails
+
+::: {.callout-note appearance="simple"}
+you are a rule-driven tweet sentiment classifier.
+
+labels: positive, negative, neutral (choose exactly one).
+
+decision steps:\
+1) preprocess: ignore @handles, urls, and non-sentiment hashtags.\
+2) score cues internally (do not show):\
+   - add +1 for each clear positive cue (praise, thanks, excitement, 😊🤩🎉, "not bad").\
+   - add -1 for each clear negative cue (complaint, anger, disgust, 😡🤮💀, sarcastic quotes).\
+   - apply negation flip ("not good" → negative).\
+3) decide:\
+   - if positive cues outweigh negative by ≥2 → positive.\
+   - if negative cues outweigh positive by ≥2 → negative.\
+   - otherwise → neutral.
+
+scope: judge only the provided tweet and the author's stance (not quoted text).
+
+output constraint: return exactly one of {positive, negative, neutral} in lowercase, with no other text or punctuation.
+keep all reasoning private.
+:::
+
+## Evaluation results
+
+I used Agenta.ai to evaluate these 5 prompts against each other using the sampled tweets gathered from my python script generated in step two.
+
+These are the results of my evaluation in a dataframe.
+
+```{python}
+import pandas as pd
+
+default_evaluation_scenarios_df = pd.read_csv("default_evaluation_scenarios.csv")
+default_evaluation_scenarios_df
+```
+
+## Prompt selection
+
+These prompts all seemed to perform well based on what I am learning about sentiment analysis and prompt evaluation. My instinct is to select prompts with the highest accuracy, but the resulting evaluation leads to a tie break scenario with the few shot, deliberate, and reflective all receiving a score of 85% accuracy. As a student with a low income, the next metric that I prioritize is cost. That leads me to choosing the few shot and deliberate prompts for my further evaluation.
+
+# Step two: select 20 tweets
+
+I used OpenAI Codex in cursor to generate a script to select 20 tweets randomly from the dataset. If it eases your mind, I have telemetry turned off in cursor. When I have more time, I plan to become a terminal only person. I already have many command line tools (many thanks to your Welcome to the Command Line! guide), I mostly need to get better at using helix or neovim more effectively. I have been using Ghostty as my terminal emulator because it is lightweight and highly configurable.
+
+## Prompt
+
+::: {.callout-note appearance="simple"}
+Will you generate a python script that selects 20 tweets at random from this csv and creates a file with those selected tweets along with their sentiment?
+:::
+
+
+## Resulting Python script:
+
+```python
+#!/usr/bin/env python3
+import argparse
+import csv
+import random
+from pathlib import Path
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Select random tweets from a CSV file")
+    parser.add_argument("--input", default="example_tweets.csv", help="Path to the input CSV file")
+    parser.add_argument("--output", default="sampled_tweets.csv", help="Path to write the sampled tweets")
+    parser.add_argument("--count", type=int, default=20, help="Number of tweets to select")
+    parser.add_argument("--seed", type=int, help="Random seed for reproducibility")
+    args = parser.parse_args()
+
+    if args.seed is not None:
+        random.seed(args.seed)
+
+    input_path = Path(args.input)
+    if not input_path.exists():
+        raise SystemExit(f"Input file '{input_path}' does not exist.")
+
+    with input_path.open(newline="", encoding="utf-8") as infile:
+        reader = csv.DictReader(infile)
+        rows = list(reader)
+
+    if not rows:
+        raise SystemExit("Input file contains no tweet rows.")
+
+    sample_size = min(args.count, len(rows))
+    sampled_rows = random.sample(rows, sample_size)
+
+    # Persist selected tweets with their sentiment for later review.
+    output_path = Path(args.output)
+    fieldnames = ["textID", "text", "sentiment"]
+    with output_path.open("w", newline="", encoding="utf-8") as outfile:
+        writer = csv.DictWriter(outfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in sampled_rows:
+            writer.writerow({
+                "textID": row.get("textID", ""),
+                "text": row.get("text", ""),
+                "sentiment": row.get("sentiment", ""),
+            })
+
+    print(f"Wrote {sample_size} tweets to '{output_path}'.")
+
+
+if __name__ == "__main__":
+    main()
+
+```
+
+Dataframe of selected tweets
+
+```{python}
+import pandas as pd
+
+tweets_df = pd.read_csv("sampled_tweets.csv")
+tweets_df
+```
+
+
+
+# Step three: benchmark
+
+## Agenta.AI setup for 3 model benchmark
+
+For both of my two prompt benchmark evaluations, I used the latest versions of the three most popular models, gpt-5, claude sonnet 4.5, and gemini 2.5 pro. For each of these models I wanted to set the temperature to 0.2 because I wanted to configure that setting, but I didn't want to go to high and risk the possibility of hallucination when the output is meant to be simple. I also ran a prompt in gpt-5 to determine if I was on the right track. The prompt was:
+
+## Prompt about temperature setting for sentiment analysis
+
+::: {.callout-note appearance="simple"}
+what is the best temperature setting for sentiment analyis?
+:::
+
+## Output
+
+::: {.callout-note appearance="simple"}
+In sentiment analysis (or any natural language classification task), the temperature setting usually refers to how deterministic or exploratory a model’s output is when generating text. Here’s how it applies:
+
+Low temperature (0.0 – 0.3)
+
+Produces deterministic, stable outputs.
+
+Best for classification tasks like sentiment analysis, where you want consistent labeling (positive, negative, neutral) rather than creativity.
+
+Example: A sentence classified as "negative" will almost always get the same label.
+
+Medium temperature (0.4 – 0.7)
+
+Allows slight variation in phrasing while still being mostly consistent.
+
+Useful if you’re generating explanations of sentiment (e.g., why a review is negative) and want a bit of variety in language.
+
+High temperature (0.8 – 1.0+)
+
+Encourages creative, diverse outputs.
+
+Not ideal for classification accuracy, since it may produce inconsistent or off-topic results.
+
+Better suited for creative writing, brainstorming, or exploring multiple interpretations.
+
+✅ Best practice: For sentiment analysis, keep the temperature at 0.0 or very close to 0. This ensures reproducibility and reliability, which is critical for analytics and downstream decisions.
+
+Do you want me to also give you recommended settings for other parameters (like top_p, max_tokens, etc.) to optimize sentiment classification?
+:::
+
+I then decided to follow up on ChatGPT's recommended settings for other outputs.
+
+## Followup prompt in same chat about temperature parameters
+
+::: {.callout-note appearance="simple"}
+yes
+:::
+
+## Output
+
+::: {.callout-note appearance="simple"}
+Great! Let’s go through the key generation parameters you’ll want to tune for sentiment analysis (classification-style tasks).
+
+🔧 Recommended Parameter Settings for Sentiment Analysis
+1. Temperature
+
+* Set to 0.0 (or very close to 0.1 max)
+
+* Ensures deterministic and consistent outputs — critical for classification accuracy.
+
+2. Top_p (Nucleus Sampling)
+
+* Set to 1.0 (disable nucleus sampling).
+
+* With temperature already low, nucleus sampling isn’t necessary.
+
+* This ensures the model always chooses the highest-probability class instead of exploring alternatives.
+
+3. Max Tokens
+
+* Keep low (e.g., 10–20) if you only want the label (e.g., “positive,” “neutral,” “negative”).
+
+* Increase (e.g., 50–100) if you want a short explanation of the sentiment along with the label.
+
+4. Stop Sequences
+
+* Optional, but useful for clean results.
+
+* Example: If you want only one-word labels, you can enforce a stop token after “positive” / “negative” / “neutral” to cut off extra text.
+
+5. Prompt Engineering
+
+* Provide clear instructions in the prompt to reduce variance.
+
+* Example:
+
+```vbnet
+Classify the sentiment of the following text as strictly one of: Positive, Negative, Neutral. 
+Text: "The service was amazing but the food was average."
+Sentiment:
+```
+* With temperature = 0, this ensures very consistent and accurate labels.
+
+🎯 Example Config for Reliable Sentiment Analysis
+
+```json
+{
+  "temperature": 0.0,
+  "top_p": 1.0,
+  "max_tokens": 10,
+  "stop": ["\n", "."]
+}
+```
+👉 If you want classification + short explanation, you’d just bump max_tokens up and remove strict stops.
+
+Would you like me to also show you how to set this up in code (Python/JavaScript examples for OpenAI API), so you can copy-paste and use it right away?
+:::
+
+My instincts about temperature setting for sentiment analysis were mostly correct (that temperature should be low), but ChatGPT was suggesting 0.0 which I thought was kind of boring so I decided to split the difference and go with 0.1 for temperature. I followed the other suggestions of setting Top P to 1.0 and Max Tokens to 10. I'm a bit curious about the Max Tokens setting because my earlier evaluations for the few shot and deliberate prompts had a mean token usage as 353 and 287 repectively. I didn't adjust the frequency or presence penalties because they didn't seem applicable to my evaluation.
+
+## Set-up tweak
+
+Well my intention was to use the ChatGPT suggested parameters, but I was having so much trouble with the outputs of claude sonnet 4.5 and gemini 2.5 pro that I decided to forego max token limit and Top P. I was receiving rate limit errors, or no output at all. I tried a lot of different configurations, but removing max tokens and the Top P parameter allowed the evaluation to run without error. I also adjust gpt-5 in this way.
+
+# Step four: results
+
+## Few shot evaluation results
+
+### Dataframe of overall results from few shot evaluation
+
+::: {.callout-note appearance="simple"}
+app.key v5 was the name I used for gpt-5. I'm still trying to figure out the best practices when it comes to using agenta.ai.
+:::
+
+```{python}
+import pandas as pd
+
+fewShot_df = pd.read_csv("fewShot_evaluation_scenarios.csv")
+fewShot_df
+```
+
+
+### Dataframe of detailed results of few shot prompt with Gemini 2.5 Pro
+
+```{python}
+import pandas as pd
+
+fewShotgemini_df = pd.read_csv("fewShot_gemini.csv")
+fewShotgemini_df
+```
+
+### Dataframe of detailed results of few shot prompt with Claude Sonnet 4.5
+
+```{python}
+import pandas as pd
+
+fewShotclaude_df = pd.read_csv("fewShot_claude.csv")
+fewShotclaude_df
+```
+
+### Dataframe of detailed results of few shot prompt with GPT-5
+
+```{python}
+import pandas as pd
+
+fewShotgpt_df = pd.read_csv("fewShot_gpt5.csv")
+fewShotgpt_df
+```
+
+## Deliberate evaluation results
+
+### Dataframe of overall results from deliberate evaluation
+
+```{python}
+import pandas as pd
+
+deliberate_df = pd.read_csv("deliberate_evaluation_scenarios.csv")
+deliberate_df
+```
+
+### Dataframe of detailed results of deliberate prompt with Gemini 2.5 Pro
+
+```{python}
+import pandas as pd
+
+deliberategemini_df = pd.read_csv("deliberate_gemini.csv")
+deliberategemini_df
+```
+
+### Dataframe of detailed results of deliberate prompt with Claude Sonnet 4.5
+
+```{python}
+import pandas as pd
+
+deliberateclaude_df = pd.read_csv("deliberate_claude.csv")
+deliberateclaude_df
+```
+
+### Dataframe of detailed results of deliberate prompt with GPT-5
+
+```{python}
+import pandas as pd
+
+deliberategpt_df = pd.read_csv("deliberate_gpt5.csv")
+deliberategpt_df
+```
+
+## Comprehensive evaluation results
+
+### Dataframe of comprehensive results from deliberate and few shot evaluation
+
+```{python}
+import pandas as pd
+
+comprehensive_df = pd.read_csv("comprehensive_evaluation.csv")
+comprehensive_df
+```
+
+# Conclusion
+
+$\langle$ replace this with your reflections $\rangle$
+
+# AI Appendix
+
+The following are prompts made in ChatGPT-5 thinking I made for research and to generate my first 5 prompts for sentiment analysis.
+
+### Researching evaluation strategies
+::: {.callout-note appearance="simple"}
+If I generate 5 different prompts to use with an LLM for sentiment analysis of tweets, how could I pick the best two?
+:::
+
+### Researching current best techniques for sentiment analysis prompts
+::: {.callout-note appearance="simple"}
+What are the current best methods of developing LLM prompts for sentiment analysis?
+:::
+
+I decided to use information gathered previously in the same chat to output the 5 prompts for sentiment analysis.
+
+::: {.callout-note appearance="simple"}
+Would you develop 5 separate prompts for testing sentiment analysis of tweets based on the infromation you provided?
+:::
+
+The output included things I wasn't sure would work for Agenta.AI so I asked to adjust them for use in Agenta.AI, but it gave me JSON and based off of your tutorial video, I wasn't sure how to make that work.
+
+::: {.callout-note appearance="simple"}
+can you adjust these for use in agenta.ai?
+:::
+
+### 5 prompt generation prompt iteration 
+I iterated on my sentiment analysis prompt generation prompt many times until I was satisfied with the output. The following are my initial iterations.
+
+This prompt was a branch off of the initial prompt in my "Researching current best techniques for sentiment analysis prompts" section.
+
+::: {.callout-note appearance="simple"}
+Would you develop 5 separate prompts for testing sentiment analysis of tweets (positive, negative, or neutral) based on the information you provided? I just want the system prompt and the user prompt. I will be evaluating them.
+:::
+
+The following are prompts I tried in separate chats based on what I gathered from the above prompts.
+
+::: {.callout-note appearance="simple"}
+Would you develop 5 separate prompts for testing sentiment analysis of tweets (positive, negative, or neutral) based on the most current and effective trends in prompt engineering? I just want the system prompt and the user prompt. I will be evaluating them against each other. The three options for sentiment (positive, negative, neutral) should be in the system prompt, not in JSON.
+:::
+
+::: {.callout-note appearance="simple"}
+Would you develop 5 separate prompts for testing sentiment analysis of tweets (positive, negative, or neutral) based on the most current and effective trends in prompt engineering? I just want the system prompt. I will be evaluating them against each other. The three options for sentiment (positive, negative, neutral) should be in the system prompt.
+:::
+
+::: {.callout-note appearance="simple"}
+Would you develop 5 separate prompts for testing sentiment analysis of tweets (positive, negative, or neutral) based on the most current and effective trends in prompt engineering? I just want the system prompt. I will be evaluating them against each other. The three options for sentiment (positive, negative, neutral) should be in the system prompt. I will be evaluating them in agenta.ai so you don't need to specify output format.
+:::
+
+::: {.callout-note appearance="simple"}
+Would you develop 5 separate prompts for testing sentiment analysis of tweets (positive, negative, or neutral) based on the most current and effective trends in prompt engineering? I just want the system prompt. I will be evaluating them against each other. The three options for sentiment (positive, negative, neutral) should be in the system prompt. I will be evaluating them in agenta.ai. The output should should include only the sentiment indicated no other text, also the sentiment should be written in lowercase
+:::
+
+### Prompts for vaderSentiment set up
+
+I git cloned vaderSentiment and then ran this prompt using claude sonnet 4.5 in cursor to make sure all the python packages were installed correctly.
+
+::: {.callout-note appearance="simple"}
+will you help me create a virtual environment and install all the necessary python modules for this vaderSentiment repo?
+:::
+
+::: {.callout-note appearance="simple"}
+Now how do I upload a list of tweets for sentiment analysis in this repo?
+:::
+
+::: {.callout-note appearance="simple"}
+Can you export the analysis into a csv?
+:::
+
+
