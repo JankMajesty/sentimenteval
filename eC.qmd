@@ -15,18 +15,6 @@ monofont: "JetBrains Mono"
 
 This documents my attempts to benchmark a pair of prompts on several models.
 
-### Step three
-Using Agenta.AI, benchmark your two prompts on the 20 tweets, using any three models.
-Then try the same tweets on an established sentiment analysis tool.
-
-### Step four
-Document your results in your .qmd file, clearly identifying the best prompt and the best model.
-
-### Step five
-You must upload your .qmd file and your rendered .html file to Canvas. All must have the basename `eC`. Points will be deducted for any other name. (If you upload it more than once, Canvas will change the name but don't be concerned about that.)
-
-You should remove this instruction section from the final document.
-
 # Step one: two best prompts
 
 For selecting the two best prompts, I thought I needed to generate more than two prompts and evaluate them all against each other. For this step I asked ChatGPT-5 thinking to generate 5 prompts for sentiment analysis. I actually had to try several prompts before I recieved an output I was happy with. I will include the other prompts in my AI appendix, but the following is the prompt that generated my sentiment analysis prompts.
@@ -578,8 +566,11 @@ Would you develop 5 separate prompts for testing sentiment analysis of tweets (p
 Would you develop 5 separate prompts for testing sentiment analysis of tweets (positive, negative, or neutral) based on the most current and effective trends in prompt engineering? I just want the system prompt. I will be evaluating them against each other. The three options for sentiment (positive, negative, neutral) should be in the system prompt. I will be evaluating them in agenta.ai. The output should should include only the sentiment indicated no other text, also the sentiment should be written in lowercase
 :::
 
+## Asking Claude in Cursor to combine the Agenta.ai results csvs
 
-
+::: {.callout-note appearance="simple"}
+can you append the @deliberate_evaluation_scenarios.csv to @fewShot_evaluation_scenarios.csv in a new file called comprehensive_evaluation.csv?
+:::
 
 
 
