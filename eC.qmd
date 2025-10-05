@@ -4,7 +4,6 @@ author: "Lucas McGill"
 date: today
 format:
   html:
-    theme: darkly
     toc: true
     embed-resources: true
 mainfont: "Georgia"
@@ -164,7 +163,7 @@ These prompts all seemed to perform well based on what I am learning about senti
 
 # Step two: select 20 tweets
 
-I used OpenAI Codex in cursor to generate a script to select 20 tweets randomly from the dataset. I have privacy mode enabled in cursor, but when I started looking at some of the telemetry settings I have for certain extensions, I realized that I couldn't turn them off and I'm probably not working as privately as I think I am. This motivates me to work in the terminal more. When I have more time, I plan to become a terminal only person. I already have many command line tools (many thanks to your Welcome to the Command Line! guide), I mostly need to get better at using helix or neovim more effectively. I have been using Ghostty as my terminal emulator because it is lightweight and highly configurable.
+I used OpenAI Codex in Cursor to generate a script to select 20 tweets randomly from the dataset. I have privacy mode enabled in Cursor, but when I started looking at some of the telemetry settings I have for certain extensions, I realized that I couldn't turn them off and I'm probably not working as privately as I think I am. This motivates me to work in the terminal more. When I have more time, I plan to become a terminal only person. I already have many command line tools (many thanks to your Welcome to the Command Line! guide), I mostly need to get better at using helix or neovim more effectively. I have been using Ghostty as my terminal emulator because it is lightweight and highly configurable.
 
 ## Prompt
 
@@ -370,7 +369,7 @@ Would you help me set up a Gemini prompt for sentiment analWhat are some open so
 
 Gemini suggested VADER as an open source tool and I remember you mentioned it in class as well, so I thought that would be as good as any.
 
-I git cloned vaderSentiment and then ran this prompt using Claude Sonnet 4.5 in cursor to make sure all the python packages were installed correctly. I've never installed python packages from a git cloned repo, so I thought it would just be faster to prompt for it. Probably a bit lazy on my part.
+I git cloned vaderSentiment and then ran this prompt using Claude Sonnet 4.5 in Cursor to make sure all the python packages were installed correctly. I've never installed python packages from a git cloned repo, so I thought it would just be faster to prompt for it. Probably a bit lazy on my part.
 
 ::: {.callout-note appearance="simple"}
 will you help me create a virtual environment and install all the necessary python modules for this vaderSentiment repo?
