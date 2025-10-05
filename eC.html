@@ -2294,7 +2294,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
   <li><a href="#researching-evaluation-strategies" id="toc-researching-evaluation-strategies" class="nav-link" data-scroll-target="#researching-evaluation-strategies">Researching evaluation strategies</a></li>
   <li><a href="#researching-current-best-techniques-for-sentiment-analysis-prompts" id="toc-researching-current-best-techniques-for-sentiment-analysis-prompts" class="nav-link" data-scroll-target="#researching-current-best-techniques-for-sentiment-analysis-prompts">Researching current best techniques for sentiment analysis prompts</a></li>
   <li><a href="#prompt-generation-prompt-iteration" id="toc-prompt-generation-prompt-iteration" class="nav-link" data-scroll-target="#prompt-generation-prompt-iteration">5 prompt generation prompt iteration</a></li>
-  <li><a href="#asking-claude-in-cursor-to-combine-the-agenta.ai-results-csvs" id="toc-asking-claude-in-cursor-to-combine-the-agenta.ai-results-csvs" class="nav-link" data-scroll-target="#asking-claude-in-cursor-to-combine-the-agenta.ai-results-csvs">Asking Claude in Cursor to combine the Agenta.ai results csvs</a></li>
+  <li><a href="#asking-claude-in-cursor-to-combine-the-agenta.ai-results-csvs" id="toc-asking-claude-in-cursor-to-combine-the-agenta.ai-results-csvs" class="nav-link" data-scroll-target="#asking-claude-in-cursor-to-combine-the-agenta.ai-results-csvs">Asking Claude in Cursor to combine the Agenta.ai results CSVs</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -2497,12 +2497,12 @@ never include explanations or punctuation.</p>
 <h2 class="anchored" data-anchor-id="evaluation-results">Evaluation results</h2>
 <p>I used Agenta.ai to evaluate these 5 prompts against each other using the sampled tweets gathered from my python script generated in step two.</p>
 <p>These are the results of my evaluation in a dataframe.</p>
-<div id="655c50e9" class="cell" data-execution_count="1">
+<div id="2dc1be17" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>default_evaluation_scenarios_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;default_evaluation_scenarios.csv&quot;</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>default_evaluation_scenarios_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="25">
 <div>
 
 
@@ -2675,12 +2675,12 @@ never include explanations or punctuation.</p>
 <span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
 <span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    main()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Dataframe of selected tweets</p>
-<div id="ccee6037" class="cell" data-execution_count="2">
+<div id="57479fbc" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>tweets_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;sampled_tweets.csv&quot;</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>tweets_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="26">
 <div>
 
 
@@ -3046,12 +3046,12 @@ Sentiment:</code></pre>
 </div>
 </div>
 </div>
-<div id="10beb6e0" class="cell" data-execution_count="3">
+<div id="0ecf5c0f" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fewShot_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;fewShot_evaluation_scenarios.csv&quot;</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>fewShot_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <div>
 
 
@@ -3124,12 +3124,12 @@ Sentiment:</code></pre>
 </section>
 <section id="dataframe-of-detailed-results-of-few-shot-prompt-with-gemini-2.5-pro" class="level3">
 <h3 class="anchored" data-anchor-id="dataframe-of-detailed-results-of-few-shot-prompt-with-gemini-2.5-pro">Dataframe of detailed results of few shot prompt with Gemini 2.5 Pro</h3>
-<div id="18a946c8" class="cell" data-execution_count="4">
+<div id="b5d1e135" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>fewShotGemini_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;fewShot_Gemini.csv&quot;</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>fewShotGemini_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="28">
 <div>
 
 
@@ -3335,12 +3335,12 @@ Sentiment:</code></pre>
 </section>
 <section id="dataframe-of-detailed-results-of-few-shot-prompt-with-claude-sonnet-4.5" class="level3">
 <h3 class="anchored" data-anchor-id="dataframe-of-detailed-results-of-few-shot-prompt-with-claude-sonnet-4.5">Dataframe of detailed results of few shot prompt with Claude Sonnet 4.5</h3>
-<div id="f95c9eac" class="cell" data-execution_count="5">
+<div id="cfd8b0c5" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>fewShotClaude_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;fewShot_Claude.csv&quot;</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>fewShotClaude_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="29">
 <div>
 
 
@@ -3546,12 +3546,12 @@ Sentiment:</code></pre>
 </section>
 <section id="dataframe-of-detailed-results-of-few-shot-prompt-with-gpt-5" class="level3">
 <h3 class="anchored" data-anchor-id="dataframe-of-detailed-results-of-few-shot-prompt-with-gpt-5">Dataframe of detailed results of few shot prompt with GPT-5</h3>
-<div id="671aa1ae" class="cell" data-execution_count="6">
+<div id="6e9dacb1" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>fewShotGPT_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;fewShot_GPT5.csv&quot;</span>)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>fewShotGPT_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="30">
 <div>
 
 
@@ -3760,12 +3760,12 @@ Sentiment:</code></pre>
 <h2 class="anchored" data-anchor-id="deliberate-evaluation-results">Deliberate evaluation results</h2>
 <section id="dataframe-of-overall-results-from-deliberate-evaluation" class="level3">
 <h3 class="anchored" data-anchor-id="dataframe-of-overall-results-from-deliberate-evaluation">Dataframe of overall results from deliberate evaluation</h3>
-<div id="538efd20" class="cell" data-execution_count="7">
+<div id="e8d45e1f" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>deliberate_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;deliberate_evaluation_scenarios.csv&quot;</span>)</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>deliberate_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="31">
 <div>
 
 
@@ -3838,12 +3838,12 @@ Sentiment:</code></pre>
 </section>
 <section id="dataframe-of-detailed-results-of-deliberate-prompt-with-gemini-2.5-pro" class="level3">
 <h3 class="anchored" data-anchor-id="dataframe-of-detailed-results-of-deliberate-prompt-with-gemini-2.5-pro">Dataframe of detailed results of deliberate prompt with Gemini 2.5 Pro</h3>
-<div id="a7787947" class="cell" data-execution_count="8">
+<div id="2c2c6d84" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>deliberateGemini_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;deliberate_Gemini.csv&quot;</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>deliberateGemini_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="32">
 <div>
 
 
@@ -4049,12 +4049,12 @@ Sentiment:</code></pre>
 </section>
 <section id="dataframe-of-detailed-results-of-deliberate-prompt-with-claude-sonnet-4.5" class="level3">
 <h3 class="anchored" data-anchor-id="dataframe-of-detailed-results-of-deliberate-prompt-with-claude-sonnet-4.5">Dataframe of detailed results of deliberate prompt with Claude Sonnet 4.5</h3>
-<div id="206b4523" class="cell" data-execution_count="9">
+<div id="71c46607" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>deliberateClaude_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;deliberate_Claude.csv&quot;</span>)</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>deliberateClaude_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="33">
 <div>
 
 
@@ -4260,12 +4260,12 @@ Sentiment:</code></pre>
 </section>
 <section id="dataframe-of-detailed-results-of-deliberate-prompt-with-gpt-5" class="level3">
 <h3 class="anchored" data-anchor-id="dataframe-of-detailed-results-of-deliberate-prompt-with-gpt-5">Dataframe of detailed results of deliberate prompt with GPT-5</h3>
-<div id="8b0713f3" class="cell" data-execution_count="10">
+<div id="83ff74c0" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>deliberateGPT_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;deliberate_GPT5.csv&quot;</span>)</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>deliberateGPT_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="34">
 <div>
 
 
@@ -4474,12 +4474,12 @@ Sentiment:</code></pre>
 <h2 class="anchored" data-anchor-id="comprehensive-evaluation-results-from-agenta.ai">Comprehensive evaluation results from Agenta.ai</h2>
 <section id="dataframe-of-comprehensive-results-from-deliberate-and-few-shot-evaluation" class="level3">
 <h3 class="anchored" data-anchor-id="dataframe-of-comprehensive-results-from-deliberate-and-few-shot-evaluation">Dataframe of comprehensive results from deliberate and few shot evaluation</h3>
-<div id="3ff5252b" class="cell" data-execution_count="11">
+<div id="f05a77be" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>comprehensive_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;comprehensive_evaluation.csv&quot;</span>)</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>comprehensive_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="35">
 <div>
 
 
@@ -4602,12 +4602,12 @@ Sentiment:</code></pre>
 </section>
 <section id="vader-results" class="level2">
 <h2 class="anchored" data-anchor-id="vader-results">VADER results</h2>
-<div id="a19a040d" class="cell" data-execution_count="12">
+<div id="ecf52340" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>vader_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;VADER_Accuracy.csv&quot;</span>)</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>vader_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="36">
 <div>
 
 
@@ -5019,7 +5019,7 @@ Sentiment:</code></pre>
 </div>
 </section>
 <section id="asking-claude-in-cursor-to-combine-the-agenta.ai-results-csvs" class="level2">
-<h2 class="anchored" data-anchor-id="asking-claude-in-cursor-to-combine-the-agenta.ai-results-csvs">Asking Claude in Cursor to combine the Agenta.ai results csvs</h2>
+<h2 class="anchored" data-anchor-id="asking-claude-in-cursor-to-combine-the-agenta.ai-results-csvs">Asking Claude in Cursor to combine the Agenta.ai results CSVs</h2>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">

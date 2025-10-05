@@ -586,7 +586,7 @@ Would you develop 5 separate prompts for testing sentiment analysis of tweets (p
 Would you develop 5 separate prompts for testing sentiment analysis of tweets (positive, negative, or neutral) based on the most current and effective trends in prompt engineering? I just want the system prompt. I will be evaluating them against each other. The three options for sentiment (positive, negative, neutral) should be in the system prompt. I will be evaluating them in agenta.ai. The output should should include only the sentiment indicated no other text, also the sentiment should be written in lowercase
 :::
 
-## Asking Claude in Cursor to combine the Agenta.ai results csvs
+## Asking Claude in Cursor to combine the Agenta.ai results CSVs
 
 ::: {.callout-note appearance="simple"}
 can you append the @deliberate_evaluation_scenarios.csv to @fewShot_evaluation_scenarios.csv in a new file called comprehensive_evaluation.csv?
