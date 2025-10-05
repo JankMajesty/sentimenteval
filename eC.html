@@ -2397,6 +2397,10 @@ window.Quarto = {
   <li><a href="#followup-prompt-in-same-chat-about-temperature-parameters" id="toc-followup-prompt-in-same-chat-about-temperature-parameters" class="nav-link" data-scroll-target="#followup-prompt-in-same-chat-about-temperature-parameters">Followup prompt in same chat about temperature parameters</a></li>
   <li><a href="#output-2" id="toc-output-2" class="nav-link" data-scroll-target="#output-2">Output</a></li>
   <li><a href="#set-up-tweak" id="toc-set-up-tweak" class="nav-link" data-scroll-target="#set-up-tweak">Set-up tweak</a></li>
+  <li><a href="#vader-set-up" id="toc-vader-set-up" class="nav-link" data-scroll-target="#vader-set-up">VADER set up</a>
+  <ul class="collapse">
+  <li><a href="#gemini-prompt-for-sentiment-analysis-tools" id="toc-gemini-prompt-for-sentiment-analysis-tools" class="nav-link" data-scroll-target="#gemini-prompt-for-sentiment-analysis-tools">Gemini prompt for sentiment analysis tools</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#step-four-results" id="toc-step-four-results" class="nav-link" data-scroll-target="#step-four-results">Step four: results</a>
   <ul class="collapse">
@@ -2414,9 +2418,13 @@ window.Quarto = {
   <li><a href="#dataframe-of-detailed-results-of-deliberate-prompt-with-claude-sonnet-4.5" id="toc-dataframe-of-detailed-results-of-deliberate-prompt-with-claude-sonnet-4.5" class="nav-link" data-scroll-target="#dataframe-of-detailed-results-of-deliberate-prompt-with-claude-sonnet-4.5">Dataframe of detailed results of deliberate prompt with Claude Sonnet 4.5</a></li>
   <li><a href="#dataframe-of-detailed-results-of-deliberate-prompt-with-gpt-5" id="toc-dataframe-of-detailed-results-of-deliberate-prompt-with-gpt-5" class="nav-link" data-scroll-target="#dataframe-of-detailed-results-of-deliberate-prompt-with-gpt-5">Dataframe of detailed results of deliberate prompt with GPT-5</a></li>
   </ul></li>
-  <li><a href="#comprehensive-evaluation-results" id="toc-comprehensive-evaluation-results" class="nav-link" data-scroll-target="#comprehensive-evaluation-results">Comprehensive evaluation results</a>
+  <li><a href="#comprehensive-evaluation-results-from-agenta.ai" id="toc-comprehensive-evaluation-results-from-agenta.ai" class="nav-link" data-scroll-target="#comprehensive-evaluation-results-from-agenta.ai">Comprehensive evaluation results from Agenta.ai</a>
   <ul class="collapse">
   <li><a href="#dataframe-of-comprehensive-results-from-deliberate-and-few-shot-evaluation" id="toc-dataframe-of-comprehensive-results-from-deliberate-and-few-shot-evaluation" class="nav-link" data-scroll-target="#dataframe-of-comprehensive-results-from-deliberate-and-few-shot-evaluation">Dataframe of comprehensive results from deliberate and few shot evaluation</a></li>
+  </ul></li>
+  <li><a href="#vader-results" id="toc-vader-results" class="nav-link" data-scroll-target="#vader-results">VADER results</a>
+  <ul class="collapse">
+  <li><a href="#claude-sonnet-4.5-in-cursor-summary-of-vader-results" id="toc-claude-sonnet-4.5-in-cursor-summary-of-vader-results" class="nav-link" data-scroll-target="#claude-sonnet-4.5-in-cursor-summary-of-vader-results">Claude Sonnet 4.5 in Cursor summary of VADER results</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
@@ -2425,7 +2433,6 @@ window.Quarto = {
   <li><a href="#researching-evaluation-strategies" id="toc-researching-evaluation-strategies" class="nav-link" data-scroll-target="#researching-evaluation-strategies">Researching evaluation strategies</a></li>
   <li><a href="#researching-current-best-techniques-for-sentiment-analysis-prompts" id="toc-researching-current-best-techniques-for-sentiment-analysis-prompts" class="nav-link" data-scroll-target="#researching-current-best-techniques-for-sentiment-analysis-prompts">Researching current best techniques for sentiment analysis prompts</a></li>
   <li><a href="#prompt-generation-prompt-iteration" id="toc-prompt-generation-prompt-iteration" class="nav-link" data-scroll-target="#prompt-generation-prompt-iteration">5 prompt generation prompt iteration</a></li>
-  <li><a href="#prompts-for-vadersentiment-set-up" id="toc-prompts-for-vadersentiment-set-up" class="nav-link" data-scroll-target="#prompts-for-vadersentiment-set-up">Prompts for vaderSentiment set up</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -2641,12 +2648,12 @@ never include explanations or punctuation.</p>
 <h2 class="anchored" data-anchor-id="evaluation-results">Evaluation results</h2>
 <p>I used Agenta.ai to evaluate these 5 prompts against each other using the sampled tweets gathered from my python script generated in step two.</p>
 <p>These are the results of my evaluation in a dataframe.</p>
-<div id="c7690d98" class="cell" data-execution_count="1">
+<div id="0f9259e1" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>default_evaluation_scenarios_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;default_evaluation_scenarios.csv&quot;</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>default_evaluation_scenarios_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="49">
 <div>
 
 
@@ -2819,12 +2826,12 @@ never include explanations or punctuation.</p>
 <span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
 <span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    main()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Dataframe of selected tweets</p>
-<div id="2eb57424" class="cell" data-execution_count="2">
+<div id="d7dcb3a3" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>tweets_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;sampled_tweets.csv&quot;</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>tweets_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="50">
 <div>
 
 
@@ -3092,6 +3099,86 @@ Sentiment:</code></pre>
 <h2 class="anchored" data-anchor-id="set-up-tweak">Set-up tweak</h2>
 <p>Well my intention was to use the ChatGPT suggested parameters, but I was having so much trouble with the outputs of claude sonnet 4.5 and gemini 2.5 pro that I decided to forego max token limit and Top P. I was receiving rate limit errors, or no output at all. I tried a lot of different configurations, but removing max tokens and the Top P parameter allowed the evaluation to run without error. I also adjust gpt-5 in this way.</p>
 </section>
+<section id="vader-set-up" class="level2">
+<h2 class="anchored" data-anchor-id="vader-set-up">VADER set up</h2>
+<p>First I prompted Gemini for a list of open source sentiment analysis tools.</p>
+<section id="gemini-prompt-for-sentiment-analysis-tools" class="level3">
+<h3 class="anchored" data-anchor-id="gemini-prompt-for-sentiment-analysis-tools">Gemini prompt for sentiment analysis tools</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Would you help me set up a Gemini prompt for sentiment analWhat are some open source tools for sentiment analysis of tweets?ysis tools?</p>
+</div>
+</div>
+</div>
+<p>Gemini suggested VADER as an open source tool and I remember you mentioned it in class as well, so I thought that would be as good as any.</p>
+<p>I git cloned vaderSentiment and then ran this prompt using claude sonnet 4.5 in cursor to make sure all the python packages were installed correctly. I’ve never installed python packages from a git cloned repo, so I thought it would just be faster to prompt for it. Probably a bit lazy on my part.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>will you help me create a virtual environment and install all the necessary python modules for this vaderSentiment repo?</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Now how do I upload a list of tweets for sentiment analysis in this repo?</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>I put my own tweets in tweet.txt</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Can you export the analysis into a csv?</p>
+</div>
+</div>
+</div>
+<p>At this point I realized my tweets.txt didn’t include the sentiment column so I prompted Claude in Cursor to run VADER again with my sampled_tweets.csv file.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Can you run VADER on <span class="citation" data-cites="sampled_tweets.csv">@sampled_tweets.csv</span> and measure how accurate the sentiment analysis is? The answers are in the “sentiment” column.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Will you export the results to a csv titled “VADER_Accuracy.csv”?</p>
+</div>
+</div>
+</div>
+</section>
+</section>
 </section>
 <section id="step-four-results" class="level1">
 <h1>Step four: results</h1>
@@ -3109,12 +3196,12 @@ Sentiment:</code></pre>
 </div>
 </div>
 </div>
-<div id="4eff13b7" class="cell" data-execution_count="3">
+<div id="172a1ee7" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fewShot_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;fewShot_evaluation_scenarios.csv&quot;</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>fewShot_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="51">
 <div>
 
 
@@ -3187,12 +3274,12 @@ Sentiment:</code></pre>
 </section>
 <section id="dataframe-of-detailed-results-of-few-shot-prompt-with-gemini-2.5-pro" class="level3">
 <h3 class="anchored" data-anchor-id="dataframe-of-detailed-results-of-few-shot-prompt-with-gemini-2.5-pro">Dataframe of detailed results of few shot prompt with Gemini 2.5 Pro</h3>
-<div id="ed32166d" class="cell" data-execution_count="4">
+<div id="5b21ba36" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>fewShotgemini_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;fewShot_gemini.csv&quot;</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>fewShotgemini_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="52">
 <div>
 
 
@@ -3398,12 +3485,12 @@ Sentiment:</code></pre>
 </section>
 <section id="dataframe-of-detailed-results-of-few-shot-prompt-with-claude-sonnet-4.5" class="level3">
 <h3 class="anchored" data-anchor-id="dataframe-of-detailed-results-of-few-shot-prompt-with-claude-sonnet-4.5">Dataframe of detailed results of few shot prompt with Claude Sonnet 4.5</h3>
-<div id="b783e3a1" class="cell" data-execution_count="5">
+<div id="0b67c4f0" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>fewShotclaude_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;fewShot_claude.csv&quot;</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>fewShotclaude_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="53">
 <div>
 
 
@@ -3609,12 +3696,12 @@ Sentiment:</code></pre>
 </section>
 <section id="dataframe-of-detailed-results-of-few-shot-prompt-with-gpt-5" class="level3">
 <h3 class="anchored" data-anchor-id="dataframe-of-detailed-results-of-few-shot-prompt-with-gpt-5">Dataframe of detailed results of few shot prompt with GPT-5</h3>
-<div id="0f6245e1" class="cell" data-execution_count="6">
+<div id="1d15c04d" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>fewShotgpt_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;fewShot_gpt5.csv&quot;</span>)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>fewShotgpt_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="54">
 <div>
 
 
@@ -3823,12 +3910,12 @@ Sentiment:</code></pre>
 <h2 class="anchored" data-anchor-id="deliberate-evaluation-results">Deliberate evaluation results</h2>
 <section id="dataframe-of-overall-results-from-deliberate-evaluation" class="level3">
 <h3 class="anchored" data-anchor-id="dataframe-of-overall-results-from-deliberate-evaluation">Dataframe of overall results from deliberate evaluation</h3>
-<div id="8a86b4de" class="cell" data-execution_count="7">
+<div id="b1976ac7" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>deliberate_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;deliberate_evaluation_scenarios.csv&quot;</span>)</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>deliberate_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="55">
 <div>
 
 
@@ -3901,12 +3988,12 @@ Sentiment:</code></pre>
 </section>
 <section id="dataframe-of-detailed-results-of-deliberate-prompt-with-gemini-2.5-pro" class="level3">
 <h3 class="anchored" data-anchor-id="dataframe-of-detailed-results-of-deliberate-prompt-with-gemini-2.5-pro">Dataframe of detailed results of deliberate prompt with Gemini 2.5 Pro</h3>
-<div id="f90d29f9" class="cell" data-execution_count="8">
+<div id="8f4fa989" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>deliberategemini_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;deliberate_gemini.csv&quot;</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>deliberategemini_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="56">
 <div>
 
 
@@ -4112,12 +4199,12 @@ Sentiment:</code></pre>
 </section>
 <section id="dataframe-of-detailed-results-of-deliberate-prompt-with-claude-sonnet-4.5" class="level3">
 <h3 class="anchored" data-anchor-id="dataframe-of-detailed-results-of-deliberate-prompt-with-claude-sonnet-4.5">Dataframe of detailed results of deliberate prompt with Claude Sonnet 4.5</h3>
-<div id="32f4a33e" class="cell" data-execution_count="9">
+<div id="36cb1e34" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>deliberateclaude_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;deliberate_claude.csv&quot;</span>)</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>deliberateclaude_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="57">
 <div>
 
 
@@ -4323,12 +4410,12 @@ Sentiment:</code></pre>
 </section>
 <section id="dataframe-of-detailed-results-of-deliberate-prompt-with-gpt-5" class="level3">
 <h3 class="anchored" data-anchor-id="dataframe-of-detailed-results-of-deliberate-prompt-with-gpt-5">Dataframe of detailed results of deliberate prompt with GPT-5</h3>
-<div id="9808833a" class="cell" data-execution_count="10">
+<div id="f83e20e1" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>deliberategpt_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;deliberate_gpt5.csv&quot;</span>)</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>deliberategpt_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="cell-output cell-output-display" data-execution_count="58">
 <div>
 
 
@@ -4533,16 +4620,16 @@ Sentiment:</code></pre>
 </div>
 </section>
 </section>
-<section id="comprehensive-evaluation-results" class="level2">
-<h2 class="anchored" data-anchor-id="comprehensive-evaluation-results">Comprehensive evaluation results</h2>
+<section id="comprehensive-evaluation-results-from-agenta.ai" class="level2">
+<h2 class="anchored" data-anchor-id="comprehensive-evaluation-results-from-agenta.ai">Comprehensive evaluation results from Agenta.ai</h2>
 <section id="dataframe-of-comprehensive-results-from-deliberate-and-few-shot-evaluation" class="level3">
 <h3 class="anchored" data-anchor-id="dataframe-of-comprehensive-results-from-deliberate-and-few-shot-evaluation">Dataframe of comprehensive results from deliberate and few shot evaluation</h3>
-<div id="936af507" class="cell" data-execution_count="11">
+<div id="40138f36" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>comprehensive_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;comprehensive_evaluation.csv&quot;</span>)</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>comprehensive_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="59">
 <div>
 
 
@@ -4663,6 +4750,297 @@ Sentiment:</code></pre>
 </div>
 </section>
 </section>
+<section id="vader-results" class="level2">
+<h2 class="anchored" data-anchor-id="vader-results">VADER results</h2>
+<div id="1fec6835" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>vader_df <span class="op">=</span> pd.read_csv(<span class="st">&quot;VADER_Accuracy.csv&quot;</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>vader_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="60">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">textID</th>
+<th data-quarto-table-cell-role="th">text</th>
+<th data-quarto-table-cell-role="th">true_sentiment</th>
+<th data-quarto-table-cell-role="th">predicted_sentiment</th>
+<th data-quarto-table-cell-role="th">correct</th>
+<th data-quarto-table-cell-role="th">compound_score</th>
+<th data-quarto-table-cell-role="th">positive_score</th>
+<th data-quarto-table-cell-role="th">neutral_score</th>
+<th data-quarto-table-cell-role="th">negative_score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>7ff4e1b8e7</td>
+<td>congratulations</td>
+<td>positive</td>
+<td>positive</td>
+<td>YES</td>
+<td>0.5994</td>
+<td>1.000</td>
+<td>0.000</td>
+<td>0.000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>93ee768679</td>
+<td>What would you know about packing? You`re maki...</td>
+<td>negative</td>
+<td>negative</td>
+<td>YES</td>
+<td>-0.4767</td>
+<td>0.000</td>
+<td>0.795</td>
+<td>0.205</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>5f01174cd5</td>
+<td>Soooo full that im starting to feel sick</td>
+<td>negative</td>
+<td>negative</td>
+<td>YES</td>
+<td>-0.5106</td>
+<td>0.000</td>
+<td>0.680</td>
+<td>0.320</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>2a16f885cc</td>
+<td>James and I battle over everything too! It`s k...</td>
+<td>neutral</td>
+<td>negative</td>
+<td>NO</td>
+<td>-0.4389</td>
+<td>0.000</td>
+<td>0.806</td>
+<td>0.194</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>dc405bcd61</td>
+<td>oh yeah, that`s right! thanks for reminding me</td>
+<td>positive</td>
+<td>positive</td>
+<td>YES</td>
+<td>0.6588</td>
+<td>0.473</td>
+<td>0.527</td>
+<td>0.000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>3172917914</td>
+<td>weird, `cause i synced mine this morning and g...</td>
+<td>neutral</td>
+<td>negative</td>
+<td>NO</td>
+<td>-0.1779</td>
+<td>0.000</td>
+<td>0.866</td>
+<td>0.134</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>2c9ef954f2</td>
+<td>your face makes people laugh. cause you`re so ...</td>
+<td>negative</td>
+<td>negative</td>
+<td>YES</td>
+<td>-0.1633</td>
+<td>0.191</td>
+<td>0.584</td>
+<td>0.225</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>875663c3fb</td>
+<td>YAY! My temperature went down! I can have din...</td>
+<td>neutral</td>
+<td>positive</td>
+<td>NO</td>
+<td>0.6924</td>
+<td>0.282</td>
+<td>0.718</td>
+<td>0.000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>f100af7a3b</td>
+<td>homeee! my feet are sore</td>
+<td>negative</td>
+<td>negative</td>
+<td>YES</td>
+<td>-0.4199</td>
+<td>0.000</td>
+<td>0.589</td>
+<td>0.411</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>4486f18f71</td>
+<td>_Megan_**** Thats all i`ve seen too 5 till 7...</td>
+<td>negative</td>
+<td>negative</td>
+<td>YES</td>
+<td>-0.3976</td>
+<td>0.108</td>
+<td>0.686</td>
+<td>0.205</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">10</th>
+<td>0383cacfae</td>
+<td>Has got the slow cooker going, now just to get...</td>
+<td>neutral</td>
+<td>positive</td>
+<td>NO</td>
+<td>0.3612</td>
+<td>0.172</td>
+<td>0.828</td>
+<td>0.000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">11</th>
+<td>a088ac278e</td>
+<td>I LOVE YOU GUYS! get your **** to australia in...</td>
+<td>positive</td>
+<td>positive</td>
+<td>YES</td>
+<td>0.7371</td>
+<td>0.287</td>
+<td>0.713</td>
+<td>0.000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">12</th>
+<td>96cb55250d</td>
+<td>Awww Thatss Well Sad x</td>
+<td>negative</td>
+<td>negative</td>
+<td>YES</td>
+<td>-0.2500</td>
+<td>0.256</td>
+<td>0.366</td>
+<td>0.378</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">13</th>
+<td>0483ab8b73</td>
+<td>OK dear tweeps, goodnight! I need 2 get up ear...</td>
+<td>positive</td>
+<td>positive</td>
+<td>YES</td>
+<td>0.8599</td>
+<td>0.373</td>
+<td>0.627</td>
+<td>0.000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">14</th>
+<td>f6370ad335</td>
+<td>I did my best, it is Sunday after all</td>
+<td>positive</td>
+<td>positive</td>
+<td>YES</td>
+<td>0.6369</td>
+<td>0.344</td>
+<td>0.656</td>
+<td>0.000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">15</th>
+<td>81c29a90cd</td>
+<td>is actual gonna need a new job and not just want</td>
+<td>neutral</td>
+<td>negative</td>
+<td>NO</td>
+<td>-0.0572</td>
+<td>0.000</td>
+<td>0.891</td>
+<td>0.109</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">16</th>
+<td>71e3f23eee</td>
+<td>Help. My computer has a virus. I had to place ...</td>
+<td>negative</td>
+<td>positive</td>
+<td>NO</td>
+<td>0.4574</td>
+<td>0.100</td>
+<td>0.900</td>
+<td>0.000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">17</th>
+<td>662c025def</td>
+<td>Chilling with my baybee sarah! i love this girl</td>
+<td>positive</td>
+<td>positive</td>
+<td>YES</td>
+<td>0.6588</td>
+<td>0.357</td>
+<td>0.556</td>
+<td>0.087</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">18</th>
+<td>7abf26ceee</td>
+<td>1:36 AM screw it im going to bed... one love</td>
+<td>neutral</td>
+<td>positive</td>
+<td>NO</td>
+<td>0.5859</td>
+<td>0.309</td>
+<td>0.588</td>
+<td>0.103</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">19</th>
+<td>998ff9e04c</td>
+<td>OMG, Tony Hawk`s motion on the nintendo DS suc...</td>
+<td>negative</td>
+<td>negative</td>
+<td>YES</td>
+<td>-0.4199</td>
+<td>0.000</td>
+<td>0.763</td>
+<td>0.237</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="claude-sonnet-4.5-in-cursor-summary-of-vader-results" class="level3">
+<h3 class="anchored" data-anchor-id="claude-sonnet-4.5-in-cursor-summary-of-vader-results">Claude Sonnet 4.5 in Cursor summary of VADER results</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<ul>
+<li>Overall Accuracy: 65% (13/20 correct)</li>
+<li>Correct predictions: 13 tweets marked as “YES”</li>
+<li>Incorrect predictions: 7 tweets marked as “NO”</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</section>
 </section>
 <section id="conclusion" class="level1">
 <h1>Conclusion</h1>
@@ -4771,40 +5149,6 @@ Sentiment:</code></pre>
 </div>
 <div class="callout-body-container">
 <p>Would you develop 5 separate prompts for testing sentiment analysis of tweets (positive, negative, or neutral) based on the most current and effective trends in prompt engineering? I just want the system prompt. I will be evaluating them against each other. The three options for sentiment (positive, negative, neutral) should be in the system prompt. I will be evaluating them in agenta.ai. The output should should include only the sentiment indicated no other text, also the sentiment should be written in lowercase</p>
-</div>
-</div>
-</div>
-</section>
-<section id="prompts-for-vadersentiment-set-up" class="level3">
-<h3 class="anchored" data-anchor-id="prompts-for-vadersentiment-set-up">Prompts for vaderSentiment set up</h3>
-<p>I git cloned vaderSentiment and then ran this prompt using claude sonnet 4.5 in cursor to make sure all the python packages were installed correctly.</p>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>will you help me create a virtual environment and install all the necessary python modules for this vaderSentiment repo?</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Now how do I upload a list of tweets for sentiment analysis in this repo?</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Can you export the analysis into a csv?</p>
 </div>
 </div>
 </div>

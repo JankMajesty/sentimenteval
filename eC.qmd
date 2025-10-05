@@ -370,6 +370,47 @@ My instincts about temperature setting for sentiment analysis were mostly correc
 
 Well my intention was to use the ChatGPT suggested parameters, but I was having so much trouble with the outputs of claude sonnet 4.5 and gemini 2.5 pro that I decided to forego max token limit and Top P. I was receiving rate limit errors, or no output at all. I tried a lot of different configurations, but removing max tokens and the Top P parameter allowed the evaluation to run without error. I also adjust gpt-5 in this way.
 
+## VADER set up
+
+First I prompted Gemini for a list of open source sentiment analysis tools.
+
+### Gemini prompt for sentiment analysis tools
+
+::: {.callout-note appearance="simple"}
+Would you help me set up a Gemini prompt for sentiment analWhat are some open source tools for sentiment analysis of tweets?ysis tools?
+:::
+
+Gemini suggested VADER as an open source tool and I remember you mentioned it in class as well, so I thought that would be as good as any.
+
+I git cloned vaderSentiment and then ran this prompt using claude sonnet 4.5 in cursor to make sure all the python packages were installed correctly. I've never installed python packages from a git cloned repo, so I thought it would just be faster to prompt for it. Probably a bit lazy on my part.
+
+::: {.callout-note appearance="simple"}
+will you help me create a virtual environment and install all the necessary python modules for this vaderSentiment repo?
+:::
+
+::: {.callout-note appearance="simple"}
+Now how do I upload a list of tweets for sentiment analysis in this repo?
+:::
+
+::: {.callout-note appearance="simple"}
+I put my own tweets in tweet.txt
+:::
+
+::: {.callout-note appearance="simple"}
+Can you export the analysis into a csv?
+:::
+
+At this point I realized my tweets.txt didn't include the sentiment column so I prompted Claude in Cursor to run VADER again with my sampled_tweets.csv file.
+
+::: {.callout-note appearance="simple"}
+Can you run VADER on @sampled_tweets.csv and measure how accurate the sentiment analysis is? The answers are in the "sentiment" column.
+:::
+
+
+::: {.callout-note appearance="simple"}
+Will you export the results to a csv titled "VADER_Accuracy.csv"?
+:::
+
 # Step four: results
 
 ## Few shot evaluation results
@@ -453,7 +494,7 @@ deliberategpt_df = pd.read_csv("deliberate_gpt5.csv")
 deliberategpt_df
 ```
 
-## Comprehensive evaluation results
+## Comprehensive evaluation results from Agenta.ai
 
 ### Dataframe of comprehensive results from deliberate and few shot evaluation
 
@@ -463,6 +504,22 @@ import pandas as pd
 comprehensive_df = pd.read_csv("comprehensive_evaluation.csv")
 comprehensive_df
 ```
+
+## VADER results
+
+```{python}
+import pandas as pd
+
+vader_df = pd.read_csv("VADER_Accuracy.csv")
+vader_df
+```
+### Claude Sonnet 4.5 in Cursor summary of VADER results
+
+::: {.callout-note appearance="simple"}
+* Overall Accuracy: 65% (13/20 correct)
+* Correct predictions: 13 tweets marked as "YES"
+* Incorrect predictions: 7 tweets marked as "NO"
+:::
 
 # Conclusion
 
@@ -521,20 +578,8 @@ Would you develop 5 separate prompts for testing sentiment analysis of tweets (p
 Would you develop 5 separate prompts for testing sentiment analysis of tweets (positive, negative, or neutral) based on the most current and effective trends in prompt engineering? I just want the system prompt. I will be evaluating them against each other. The three options for sentiment (positive, negative, neutral) should be in the system prompt. I will be evaluating them in agenta.ai. The output should should include only the sentiment indicated no other text, also the sentiment should be written in lowercase
 :::
 
-### Prompts for vaderSentiment set up
 
-I git cloned vaderSentiment and then ran this prompt using claude sonnet 4.5 in cursor to make sure all the python packages were installed correctly.
 
-::: {.callout-note appearance="simple"}
-will you help me create a virtual environment and install all the necessary python modules for this vaderSentiment repo?
-:::
 
-::: {.callout-note appearance="simple"}
-Now how do I upload a list of tweets for sentiment analysis in this repo?
-:::
-
-::: {.callout-note appearance="simple"}
-Can you export the analysis into a csv?
-:::
 
 
