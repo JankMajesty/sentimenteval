@@ -17,7 +17,7 @@ This documents my attempts to benchmark a pair of prompts on several models.
 
 # Step one: two best prompts
 
-For selecting the two best prompts, I thought I needed to generate more than two prompts and evaluate them all against each other. For this step I asked ChatGPT-5 thinking to generate 5 prompts for sentiment analysis. I actually had to try several prompts before I recieved an output I was happy with. I will include the other prompts in my AI appendix, but the following is the prompt that generated my sentiment analysis prompts.
+For selecting the two best prompts, I thought I needed to generate more than two prompts and evaluate them all against each other. For this step I asked ChatGPT-5 Thinking to generate 5 prompts for sentiment analysis. I actually had to try several prompts before I recieved an output I was happy with. I will include the other prompts in my AI appendix, but the following is the prompt that generated my sentiment analysis prompts.
 
 ## Prompt for generating 5 sentiment analysis prompts
 
@@ -356,7 +356,7 @@ My instincts about temperature setting for sentiment analysis were mostly correc
 
 ## Set-up tweak
 
-Well my intention was to use the ChatGPT suggested parameters, but I was having so much trouble with the outputs of Claude Sonnet 4.5 and Gemini 2.5 Pro that I decided to forego max token limit and Top P. I was receiving rate limit errors, or no output at all. I tried a lot of different configurations, but removing max tokens and the Top P parameter allowed the evaluation to run without error. I also adjust GPT-5 in this way.
+Well my intention was to use the ChatGPT suggested parameters, but I was having so much trouble with the outputs of Claude Sonnet 4.5 and Gemini 2.5 Pro that I decided to forego max token limit and removed the parameter setting from Top P although a 1.0 seems to be neutral any how. I was receiving rate limit errors, or no output at all. I tried a lot of different configurations, but removing max tokens and the Top P parameter allowed the evaluation to run without error. I also adjust GPT-5 in this way. I kept temperature at 0.1.
 
 ## VADER set up
 
@@ -535,7 +535,7 @@ Prompt evaluation wasn't really on my radar in regard to the world of prompt eng
 
 # AI Appendix
 
-The following are prompts made in ChatGPT-5 thinking I made for research and to generate my first 5 prompts for sentiment analysis.
+The following are prompts made in ChatGPT-5 Thinking I made for research and to generate my first 5 prompts for sentiment analysis.
 
 ### Researching evaluation strategies
 ::: {.callout-note appearance="simple"}
