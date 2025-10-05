@@ -164,7 +164,7 @@ These prompts all seemed to perform well based on what I am learning about senti
 
 # Step two: select 20 tweets
 
-I used OpenAI Codex in cursor to generate a script to select 20 tweets randomly from the dataset. If it eases your mind, I have telemetry turned off in cursor. When I have more time, I plan to become a terminal only person. I already have many command line tools (many thanks to your Welcome to the Command Line! guide), I mostly need to get better at using helix or neovim more effectively. I have been using Ghostty as my terminal emulator because it is lightweight and highly configurable.
+I used OpenAI Codex in cursor to generate a script to select 20 tweets randomly from the dataset. I have privacy mode enabled in cursor, but when I started looking at some of the telemetry settings I have for certain extensions, I realized that I couldn't turn them off and I'm probably not working as privately as I think I am. This motivates me to work in the terminal more. When I have more time, I plan to become a terminal only person. I already have many command line tools (many thanks to your Welcome to the Command Line! guide), I mostly need to get better at using helix or neovim more effectively. I have been using Ghostty as my terminal emulator because it is lightweight and highly configurable.
 
 ## Prompt
 
@@ -244,7 +244,7 @@ tweets_df
 
 ## Agenta.AI setup for 3 model benchmark
 
-For both of my two prompt benchmark evaluations, I used the latest versions of the three most popular models, gpt-5, claude sonnet 4.5, and gemini 2.5 pro. For each of these models I wanted to set the temperature to 0.2 because I wanted to configure that setting, but I didn't want to go to high and risk the possibility of hallucination when the output is meant to be simple. I also ran a prompt in gpt-5 to determine if I was on the right track. The prompt was:
+For both of my two prompt benchmark evaluations, I used the latest versions of the three most popular models, GPT-5, Claude Sonnet 4.5, and Gemini 2.5 Pro. For each of these models I wanted to set the temperature to 0.2 because I wanted to configure that setting, but I didn't want to go to high and risk the possibility of hallucination when the output is meant to be simple. I also ran a prompt in GPT-5 to determine if I was on the right track. The prompt was:
 
 ## Prompt about temperature setting for sentiment analysis
 
@@ -356,7 +356,7 @@ My instincts about temperature setting for sentiment analysis were mostly correc
 
 ## Set-up tweak
 
-Well my intention was to use the ChatGPT suggested parameters, but I was having so much trouble with the outputs of claude sonnet 4.5 and gemini 2.5 pro that I decided to forego max token limit and Top P. I was receiving rate limit errors, or no output at all. I tried a lot of different configurations, but removing max tokens and the Top P parameter allowed the evaluation to run without error. I also adjust gpt-5 in this way.
+Well my intention was to use the ChatGPT suggested parameters, but I was having so much trouble with the outputs of Claude Sonnet 4.5 and Gemini 2.5 Pro that I decided to forego max token limit and Top P. I was receiving rate limit errors, or no output at all. I tried a lot of different configurations, but removing max tokens and the Top P parameter allowed the evaluation to run without error. I also adjust GPT-5 in this way.
 
 ## VADER set up
 
@@ -370,11 +370,13 @@ Would you help me set up a Gemini prompt for sentiment analWhat are some open so
 
 Gemini suggested VADER as an open source tool and I remember you mentioned it in class as well, so I thought that would be as good as any.
 
-I git cloned vaderSentiment and then ran this prompt using claude sonnet 4.5 in cursor to make sure all the python packages were installed correctly. I've never installed python packages from a git cloned repo, so I thought it would just be faster to prompt for it. Probably a bit lazy on my part.
+I git cloned vaderSentiment and then ran this prompt using Claude Sonnet 4.5 in cursor to make sure all the python packages were installed correctly. I've never installed python packages from a git cloned repo, so I thought it would just be faster to prompt for it. Probably a bit lazy on my part.
 
 ::: {.callout-note appearance="simple"}
 will you help me create a virtual environment and install all the necessary python modules for this vaderSentiment repo?
 :::
+
+Then I ran some prompts to figure out how VADER works with my sampled tweets.
 
 ::: {.callout-note appearance="simple"}
 Now how do I upload a list of tweets for sentiment analysis in this repo?
@@ -406,7 +408,7 @@ Will you export the results to a csv titled "VADER_Accuracy.csv"?
 ### Dataframe of overall results from few shot evaluation
 
 ::: {.callout-note appearance="simple"}
-app.key v5 was the name I used for gpt-5. I'm still trying to figure out the best practices when it comes to using agenta.ai.
+app.key v5 was the name I used for GPT-5. I'm still trying to figure out the best practices when it comes to using agenta.ai.
 :::
 
 ```{python}
@@ -422,8 +424,8 @@ fewShot_df
 ```{python}
 import pandas as pd
 
-fewShotgemini_df = pd.read_csv("fewShot_gemini.csv")
-fewShotgemini_df
+fewShotGemini_df = pd.read_csv("fewShot_Gemini.csv")
+fewShotGemini_df
 ```
 
 ### Dataframe of detailed results of few shot prompt with Claude Sonnet 4.5
@@ -431,8 +433,8 @@ fewShotgemini_df
 ```{python}
 import pandas as pd
 
-fewShotclaude_df = pd.read_csv("fewShot_claude.csv")
-fewShotclaude_df
+fewShotClaude_df = pd.read_csv("fewShot_Claude.csv")
+fewShotClaude_df
 ```
 
 ### Dataframe of detailed results of few shot prompt with GPT-5
@@ -440,8 +442,8 @@ fewShotclaude_df
 ```{python}
 import pandas as pd
 
-fewShotgpt_df = pd.read_csv("fewShot_gpt5.csv")
-fewShotgpt_df
+fewShotGPT_df = pd.read_csv("fewShot_GPT5.csv")
+fewShotGPT_df
 ```
 
 ## Deliberate evaluation results
@@ -460,8 +462,8 @@ deliberate_df
 ```{python}
 import pandas as pd
 
-deliberategemini_df = pd.read_csv("deliberate_gemini.csv")
-deliberategemini_df
+deliberateGemini_df = pd.read_csv("deliberate_Gemini.csv")
+deliberateGemini_df
 ```
 
 ### Dataframe of detailed results of deliberate prompt with Claude Sonnet 4.5
@@ -469,8 +471,8 @@ deliberategemini_df
 ```{python}
 import pandas as pd
 
-deliberateclaude_df = pd.read_csv("deliberate_claude.csv")
-deliberateclaude_df
+deliberateClaude_df = pd.read_csv("deliberate_Claude.csv")
+deliberateClaude_df
 ```
 
 ### Dataframe of detailed results of deliberate prompt with GPT-5
@@ -478,8 +480,8 @@ deliberateclaude_df
 ```{python}
 import pandas as pd
 
-deliberategpt_df = pd.read_csv("deliberate_gpt5.csv")
-deliberategpt_df
+deliberateGPT_df = pd.read_csv("deliberate_GPT5.csv")
+deliberateGPT_df
 ```
 
 ## Comprehensive evaluation results from Agenta.ai
@@ -509,9 +511,27 @@ vader_df
 * Incorrect predictions: 7 tweets marked as "NO"
 :::
 
+## Identifying the best prompt and model
+
+### Winner: Deliberate GPT-5 prompt
+### Runner up: Few shot Claude Sonnet 4.5 prompt
+
+
+Viewing all the results comprehensively, I am surprised to see that VADER, a tool engineered specifically for sentiment analysis, performed poorly, tied with my deliberate Claude Sonnet 4.5 prompt in Agenta.ai. Even though I didn't get any metrics for VADER on cost, tokens, or latency, I'm going to treat this like a grade in school and go ahead and consider anything below 70% a failure. This might have not been true even six months ago, but many of my prompts were performing well above this threshold. That being said, VADER and my deliberate Claude Sonnet 4.5 prompt are disqualified from the running.
+
+For the rest of the prompts evaluated I will prioritize the metrics in this order: accuracy, cost, tokens, and latency. Considering I'm not running an enterprise business, I'm not personally invested in how fast I can get the results. Obviously accuracy is pretty high on my list because it doesn't matter if the cost or tokens are low if the prompt doesn't produce accurate results. After accuracy, I am personally concerned with keeping costs low because I'm frugal and I don't want to toss cash at the businesses that are already swimming in it. After cost, tokens is a concern because I want to run energy effiicient prompts. Cost and tokens seem to be closely related anyway.
+
+Taking my priorities into account I'm going to declare the deliberate GPT-5 prompt as the winner and the few shot Claude Sonnet 4.5 prompt as the runner up. I recieved my few shot results first and thought that even though the Claude prompts accuracy was a bit low, the cost outweighed the accuracy compared to those results because the Gemini prompt had higher accuracy, but was much more expensive. However, the deliberate GPT-5 prompt had major gains in the accuracy department and even though it costs nearly $0.001 more than the Claude prompt, both of those numbers are so low that it doesn't break the bank. I'm also not planning on running thousands of sentiment analysis prompts personally. 
+
 # Conclusion
 
-$\langle$ replace this with your reflections $\rangle$
+Prompt evaluation is an arduous multi step process. Even though this assignment was a lot more straightforward for me to complete than eB was, it still took me several hours to to compare all these prompts against each other. I only selected five prompts that were automatically generated by GPT-5, I can't imagine what this would have been like if I wanted to compare all of Schulhoff et al's 200 prompt techniques for sentiment analysis. It would have made this assingment a full time job. 
+
+I'm surprised the deliberate GPT-5 prompt performed so well because I don't remember seeing that technique mentioned explicitly in Schulhoff et al's paper. However, after a quick Google search, it appears this technique combines a few powerful prompting techniques like chain of thought and self-critique. I also realize that I would probably never write a prompt like this on my own because it's very direct. I tend to try and be a bit polite when I write my own prompts. I did read that being polite can be useful in a post I read in the WhatIKnow doc. That being said, there did seem to be a lot more variation in accuracy between models with the deliberate prompt vs the few shot prompts, which basically had negligible variation in accuracy. 
+
+Another observation I had was that Claude Sonnet 4.5 prompts tended to cost the least and use less tokens, followed by GPT-5 as a close second. However, Gemini 2.5 Pro was wildly inefficient when it came to cost, tokens and latency as compared to the other two models tested. I use Gemini frequently as a search engine because I like the UI. After comparing these metrics from my evaluation, I think I will start to use Claude more because it's more efficient than the other two popular models. Also, Claude only really performed poorly with the deliberate prompt, which I already mentioned I probably wouldn't write a prompt like that simply because it's not my style.  
+
+Prompt evaluation wasn't really on my radar in regard to the world of prompt engineering before I started taking this class. Even though this process took a long time, I was happy to compare the results when I finally had them. I had an assumption that all three of the most popular models, GPT, Claude, and Gemini were basically the same and while many of the outputs tend to be similar, I don't often get to see what's going on under the hood when I use these tools. I'm happy to have had the opportunity to view these tools based on metrics I don't usually pay much attention to and it gives me a new perspective about viewing how these tools work holistically.
 
 # AI Appendix
 
@@ -571,6 +591,3 @@ Would you develop 5 separate prompts for testing sentiment analysis of tweets (p
 ::: {.callout-note appearance="simple"}
 can you append the @deliberate_evaluation_scenarios.csv to @fewShot_evaluation_scenarios.csv in a new file called comprehensive_evaluation.csv?
 :::
-
-
-
