@@ -4,6 +4,7 @@ author: "Lucas McGill"
 date: today
 format:
   html:
+    theme: darkly
     toc: true
     embed-resources: true
 mainfont: "Georgia"
